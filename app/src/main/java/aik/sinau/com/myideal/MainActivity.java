@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnProses, btnReset;
     EditText edtBerat, edtTinggi;
     TextView txtHasil;
+    boolean cekRbtnM, cekRbtnF;
     float vBerat, vTinggi, hasilResult, hasil1;
 
     @Override
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final RadioButton rbM =(RadioButton) findViewById(R.id.rdbMale);
+        final RadioButton rbF = (RadioButton) findViewById(R.id.rdbFemale);
         btnReset = (Button) findViewById(R.id.btnReset);
         edtBerat = (EditText) findViewById(R.id.editBerat);
         edtTinggi = (EditText) findViewById(R.id.editTinggi);
@@ -38,23 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
             public void hasil(float hasilResult) {
 
-            }
-        });
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                edtBerat.setText("");
-                edtTinggi.setText("");
-                txtHasil.setText("Hasil");
-            }
-        });}
-
-    public void onRadioButtonClicked(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
-        switch (view.getId()) {
-            case R.id.rdbMale:
-                if (checked)
-
+                if (cekRbtnM == true){
                     if (hasilResult < 17) {
                         txtHasil.setText(" Anda kekurangan berat badan/kurus");
                     } else if (hasilResult >= 23) {
@@ -67,9 +54,8 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         txtHasil.setText("hasil tidak di ketahui");
                     }
-                    break;
-            case R.id.rdbFemale:
-                if (checked)
+                }else if (cekRbtnF == true){
+
                     if (hasilResult < 18) {
                         txtHasil.setText(" Anda kekurangan berat badan/kurus");
                     } else if (hasilResult >= 25) {
@@ -82,6 +68,35 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         txtHasil.setText("hasil tidak di ketahui");
                     }
+                }else{
+                    txtHasil.setText("pilih jender");
+                }
+
+            }
+        });
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                edtBerat.setText("");
+                edtTinggi.setText("");
+                txtHasil.setText("Hasil");
+                    rbM.setChecked(false);
+                rbF.setChecked(false);
+            }
+        });}
+
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+        switch (view.getId()) {
+            case R.id.rdbMale:
+                if (checked)
+                    cekRbtnM=true;
+
+
+                    break;
+            case R.id.rdbFemale:
+                if (checked)
+                    cekRbtnF=true;
                 break;
         }
 
