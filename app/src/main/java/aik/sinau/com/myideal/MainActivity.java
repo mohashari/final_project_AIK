@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         edtTinggi = (EditText) findViewById(R.id.editTinggi);
         btnProses = (Button) findViewById(R.id.btnProces);
         txtHasil = (TextView) findViewById(R.id.txtHasil);
+        final TextView txtTips= (TextView) findViewById(R.id.txtTip);
 
         btnProses.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,13 +45,17 @@ public class MainActivity extends AppCompatActivity {
                 if (cekRbtnM == true){
                     if (hasilResult < 17) {
                         txtHasil.setText(" Anda kekurangan berat badan/kurus");
+                        txtTips.setText("Tambah konsumsi makanan berkalori");
                     } else if (hasilResult >= 23) {
                         txtHasil.setText(" Anda kelebihan berat badan");
+                        txtTips.setText(" Harus waspada mulai lah diet dari sekarang");
                     } else if (hasilResult >= 17) {
                         txtHasil.setText("Berat badan normal atau ideal");
+                        txtTips.setText("Selamat berat badan anda termasuk ideal");
                     } else if (hasilResult == 27) {
-                        txtHasil.setText("Obesitas, sebaiknya segera lakukan program penurunan berat badan");
-                        txtHasil.setText(String.valueOf(hasilResult));
+                        txtHasil.setText("Obesitas");
+                        txtTips.setText(" sebaiknya segera lakukan program penurunan berat badan");
+
                     } else {
                         txtHasil.setText("hasil tidak di ketahui");
                     }
@@ -58,13 +63,17 @@ public class MainActivity extends AppCompatActivity {
 
                     if (hasilResult < 18) {
                         txtHasil.setText(" Anda kekurangan berat badan/kurus");
+                        txtTips.setText("Tambah konsumsi makanan berkalori");
                     } else if (hasilResult >= 25) {
                         txtHasil.setText(" Anda kelebihan berat badan");
+                        txtTips.setText(" Harus waspada mulai lah diet dari sekarang");
                     } else if (hasilResult>= 18) {
                         txtHasil.setText("Berat badan normal atau ideal");
+                        txtTips.setText("Selamat berat badan anda termasuk ideal");
                     } else if (hasilResult == 27) {
-                        txtHasil.setText("Obesitas, sebaiknya segera lakukan program penurunan berat badan");
-                        txtHasil.setText(String.valueOf(hasilResult));
+                        txtHasil.setText("Obesitas");
+                        txtTips.setText(" sebaiknya segera lakukan program penurunan berat badan");
+
                     } else {
                         txtHasil.setText("hasil tidak di ketahui");
                     }
@@ -78,9 +87,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 edtBerat.setText("");
+                txtTips.setText("");
                 edtTinggi.setText("");
                 txtHasil.setText("Hasil");
-                    rbM.setChecked(false);
+                rbM.setChecked(false);
                 rbF.setChecked(false);
             }
         });}
